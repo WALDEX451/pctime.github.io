@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Time Home</title>
+    <style>
+        :root {
+            --bg-start: #f7f9fc;
+            --bg-end: #e9eef8;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #0b63f6;
+            --primary-hover: #0956d4;
+            --border: #d5deea;
+            --shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .menu {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            width: 100%;
+            padding: 16px 28px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .menu-links {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .menu-link {
+            display: inline-flex;
+            justify-content: center;
+            min-width: 120px;
+            padding: 10px 16px;
+            border: 1px solid rgba(11, 99, 246, 0.08);
+            border-radius: 999px;
+            background: #f8fbff;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+        }
+
+        .menu-link:hover {
+            background: #edf3ff;
+            color: var(--primary);
+            border-color: rgba(11, 99, 246, 0.16);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            width: 100%;
+            min-height: calc(100vh - 96px);
+            display: grid;
+            align-items: center;
+            padding: 48px 28px 64px;
+        }
+
+        .hero-panel {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 48px;
+            text-align: left;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            line-height: 0.95;
+            max-width: 10ch;
+        }
+
+        p {
+            margin: 0 0 24px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 1.08rem;
+            max-width: 60ch;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button-link {
+            text-decoration: none;
+        }
+
+        .button-link button {
+            border: 0;
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--primary);
+            cursor: pointer;
+            transition: background-color 140ms ease, transform 140ms ease;
+        }
+
+        .button-link button:hover {
+            background: var(--primary-hover);
+        }
+
+        .button-link button:active {
+            transform: translateY(1px);
+        }
+
+        @media (max-width: 640px) {
+            .menu {
+                align-items: flex-start;
+                padding: 18px;
+            }
+
+            .menu-links {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .menu-link {
+                flex: 1 1 100%;
+                text-align: center;
+                min-width: 0;
+            }
+
+            .hero {
+                padding: 24px 18px 32px;
+                min-height: auto;
+            }
+
+            .hero-panel {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <nav class="menu" aria-label="Main menu">
+            <h2 class="brand">Computer Time</h2>
+            <div class="menu-links">
+                <a class="menu-link" href="index.html">Home</a>
+                <a class="menu-link" href="about.html">About</a>
+                <a class="menu-link" href="time.html">Timeline</a>
+                <a class="menu-link" href="toekomst.html">Future</a>
+                <a class="menu-link" href="AIchat.html">AI Chat</a>
+                <a class="menu-link" href="login.html">Logout</a>
+            </div>
+        </nav>
+
+        <main class="hero">
+            <section class="hero-panel">
+                <h1>Computer Time</h1>
+                <p>Explore computer history across brands, read about the project, and move through the site using the full-width navigation above.</p>
+                <div class="actions">
+                    <a class="button-link" href="time.html">
+                        <button type="button">Open Timeline</button>
+                    </a>
+                    <a class="button-link" href="toekomst.html">
+                        <button type="button">View the Future</button>
+                    </a>
+                    <a class="button-link" href="about.html">
+                        <button type="button">About the Site</button>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

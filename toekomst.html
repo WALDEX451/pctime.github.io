@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>future</title>
+    <style>
+        :root {
+            --bg-start: #eef5ff;
+            --bg-end: #dfe9ff;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text: #1f2937;
+            --muted: #60708a;
+            --primary: #0b63f6;
+            --primary-hover: #0956d4;
+            --border: #d5deea;
+            --shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
+            --radius: 18px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(11, 99, 246, 0.12), transparent 32%),
+                radial-gradient(circle at bottom right, rgba(11, 99, 246, 0.14), transparent 28%),
+                linear-gradient(145deg, var(--bg-start), var(--bg-end));
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .menu {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            width: 100%;
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--border);
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .menu-links {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .menu-link {
+            display: inline-flex;
+            justify-content: center;
+            min-width: 120px;
+            padding: 10px 16px;
+            border: 1px solid rgba(11, 99, 246, 0.08);
+            border-radius: 999px;
+            background: #f8fbff;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+        }
+
+        .menu-link:hover {
+            background: #edf3ff;
+            color: var(--primary);
+            border-color: rgba(11, 99, 246, 0.16);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            padding: 42px 28px 20px;
+        }
+
+        .hero-panel {
+            width: 100%;
+            padding: 40px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #edf3ff;
+            color: var(--primary);
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2.4rem, 6vw, 4.8rem);
+            line-height: 0.94;
+            max-width: 11ch;
+        }
+
+        p {
+            margin: 0;
+            max-width: 62ch;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .future-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            padding: 20px 28px 40px;
+        }
+
+        .future-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: var(--shadow);
+        }
+
+        .future-card img {
+            display: block;
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            background: linear-gradient(180deg, #f6f9ff, #e6efff);
+        }
+
+        .future-content {
+            padding: 22px;
+        }
+
+        .future-content h2 {
+            margin: 0 0 8px;
+            font-size: 1.35rem;
+        }
+
+        .future-content p {
+            font-size: 0.98rem;
+        }
+
+        @media (max-width: 800px) {
+            .future-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .menu {
+                align-items: flex-start;
+                padding: 18px;
+            }
+
+            .menu-links {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .menu-link {
+                flex: 1 1 100%;
+                min-width: 0;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 24px 18px 12px;
+            }
+
+            .hero-panel {
+                padding: 24px;
+            }
+
+            .future-grid {
+                padding: 12px 18px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <nav class="menu" aria-label="Main menu">
+            <h2 class="brand">Computer Time</h2>
+            <div class="menu-links">
+                <a class="menu-link" href="index.html">Home</a>
+                <a class="menu-link" href="about.html">About</a>
+                <a class="menu-link" href="time.html">Timeline</a>
+                <a class="menu-link" href="toekomst.html">Future</a>
+                <a class="menu-link" href="AIchat.html">AI Chat</a>
+                <a class="menu-link" href="login.html">Logout</a>
+                <a class="menu-link" href="mailto:ewouturtges@gmail.com">Contact</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <section class="hero-panel">
+                <span class="eyebrow">Future Concepts</span>
+                <h1>The Future of Computers</h1>
+                <p>This page explores how computers could look later: more compact, more wearable, more transparent, and more integrated into daily life. The concept images below come from the PNG files already stored in this project folder.</p>
+            </section>
+        </header>
+
+        <main class="future-grid">
+            <article class="future-card">
+                <img src="1.png.PNG" alt="Future computer concept 1">
+                <div class="future-content">
+                    <h2>Lightweight Desk Computers</h2>
+                    <p>Future computers may become thinner, lighter, and easier to place in any room, while still keeping large displays and strong performance.</p>
+                </div>
+            </article>
+
+            <article class="future-card">
+                <img src="2.png.PNG" alt="Future computer concept 2">
+                <div class="future-content">
+                    <h2>Immersive Display Systems</h2>
+                    <p>Some future designs could focus on wider screens, floating interfaces, and setups that feel closer to a digital workspace than a normal monitor.</p>
+                </div>
+            </article>
+
+            <article class="future-card">
+                <img src="3.png.PNG" alt="Future computer concept 3">
+                <div class="future-content">
+                    <h2>Portable Creative Machines</h2>
+                    <p>Computers may become more flexible for creators, with hardware that easily switches between work, drawing, entertainment, and communication.</p>
+                </div>
+            </article>
+
+            <article class="future-card">
+                <img src="4.png.PNG" alt="Future computer concept 4">
+                <div class="future-content">
+                    <h2>Smart Everyday Devices</h2>
+                    <p>Later computers could blend into furniture, classrooms, and homes, becoming less visible as separate machines and more part of the environment.</p>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+</html>

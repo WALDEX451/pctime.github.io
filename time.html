@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Brand Timeline</title>
+    <style>
+        :root {
+            --bg-start: #f7f9fc;
+            --bg-end: #e9eef8;
+            --card-bg: rgba(255, 255, 255, 0.94);
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #0b63f6;
+            --primary-hover: #0956d4;
+            --border: #d5deea;
+            --shadow: 0 12px 30px rgba(31, 41, 55, 0.12);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(145deg, var(--bg-start), var(--bg-end));
+        }
+
+        .page {
+            width: min(100%, 1100px);
+            margin: 0 auto;
+            padding: 18px;
+        }
+
+        .menu {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            margin: 0;
+            font-size: 1.2rem;
+            letter-spacing: 0.03em;
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .menu-link {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 1px solid rgba(11, 99, 246, 0.08);
+            border-radius: 999px;
+            background: #f8fbff;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 140ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+        }
+
+        .menu-link:hover {
+            background: #edf3ff;
+            color: var(--primary);
+            border-color: rgba(11, 99, 246, 0.16);
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            margin-bottom: 24px;
+            padding: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            margin-bottom: 12px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 2.3rem;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .hero-tag {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #f2f6ff;
+            color: var(--primary);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 22px;
+        }
+
+        .overview {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .overview-card {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+        }
+
+        .overview-card h2 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+        }
+
+        .overview-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 0.94rem;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 115px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #d8e3f7, #aac4f7);
+            border-radius: 999px;
+        }
+
+        .entry {
+            position: relative;
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 26px;
+            align-items: start;
+        }
+
+        .year {
+            position: relative;
+            padding-top: 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: right;
+        }
+
+        .year::after {
+            content: "";
+            position: absolute;
+            right: -17px;
+            top: 22px;
+            width: 14px;
+            height: 14px;
+            border: 3px solid #dce7fb;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 0 4px rgba(11, 99, 246, 0.12);
+        }
+
+        .card {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 24px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            box-shadow: var(--shadow);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: transparent;
+            padding: 12px;
+            mix-blend-mode: multiply;
+        }
+
+        .card img.fallback {
+            mix-blend-mode: normal;
+            padding: 0;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .card h2 {
+            margin: 0 0 8px;
+            font-size: 1.35rem;
+        }
+
+        .card p {
+            margin: 0 0 10px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .source {
+            display: inline-block;
+            margin-top: 4px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .source:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 760px) {
+            .overview {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .entry {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .year {
+                padding-top: 0;
+                text-align: left;
+            }
+
+            .year::after {
+                display: none;
+            }
+
+            .card {
+                grid-template-columns: 1fr;
+            }
+
+            .card img {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <nav class="menu" aria-label="Main menu">
+            <h2 class="brand">Computer Time</h2>
+            <div class="menu-links">
+                <a class="menu-link" href="index.html">Home</a>
+                <a class="menu-link" href="about.html">About</a>
+                <a class="menu-link" href="time.html">Timeline</a>
+                <a class="menu-link" href="toekomst.html">Future</a>
+                <a class="menu-link" href="AIchat.html">AI Chat</a>
+                <a class="menu-link" href="login.html">Logout</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <span class="hero-eyebrow">History Gallery</span>
+            <h1>Computer Brand Timeline</h1>
+            <p>This timeline is sorted by year and now includes multiple computer brands, including Apple and Microsoft.</p>
+            <div class="hero-tags">
+                <span class="hero-tag">Apple</span>
+                <span class="hero-tag">IBM</span>
+                <span class="hero-tag">Commodore</span>
+                <span class="hero-tag">Microsoft</span>
+                <span class="hero-tag">Dell</span>
+            </div>
+        </section>
+
+        <section class="overview" aria-label="Timeline overview">
+            <article class="overview-card">
+                <h2>Early Home Computers</h2>
+                <p>Machines like the Commodore 64 helped make computers common in homes and schools during the 1980s.</p>
+            </article>
+            <article class="overview-card">
+                <h2>Design Changes</h2>
+                <p>Apple and Microsoft pushed new ideas in design, from all-in-one desktops to touchscreen computers.</p>
+            </article>
+            <article class="overview-card">
+                <h2>Modern Laptops</h2>
+                <p>Newer computers became thinner, faster, and more portable while keeping powerful displays and batteries.</p>
+            </article>
+        </section>
+
+        <section class="timeline" aria-label="Computer brand timeline">
+            <article class="entry">
+                <div class="year">1981</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IBM%20PC%205150.jpg" alt="IBM Personal Computer 5150">
+                    <div>
+                        <span class="brand-badge">IBM</span>
+                        <h2>IBM Personal Computer 5150</h2>
+                        <p>The IBM PC 5150 helped define the personal computer market and influenced many machines that followed.</p>
+                        <a class="source" href="https://www.ibm.com/history/personal-computer">IBM source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">1982</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Commodore64.png" alt="Commodore 64 computer">
+                    <div>
+                        <span class="brand-badge">Commodore</span>
+                        <h2>Commodore 64</h2>
+                        <p>The Commodore 64 became one of the most famous home computers of the 1980s, known for games and learning to code.</p>
+                        <a class="source" href="https://www.commodore.ca/commodore-products/commodore-64-the-best-selling-computer-ever/">Commodore source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">1984</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Macintosh_128k_transparency.png" alt="Original Apple Macintosh 128K">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>Macintosh 128K</h2>
+                        <p>The original Macintosh was introduced on January 24, 1984. It became one of Apple’s most important computers and helped popularize the graphical user interface.</p>
+                        <a class="source" href="https://support.apple.com/en-us/112190">Apple source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">1984</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Macintosh_512K.png" alt="Apple Macintosh 512K">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>Macintosh 512K</h2>
+                        <p>One of Apple’s earliest Macintosh computers. It helped make the graphical user interface and mouse more familiar to everyday users.</p>
+                        <a class="source" href="https://support.apple.com/en-us/docs/mac/6991">Apple source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2000</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IMac_G3_Bondi_Blue%2C_three-quarters_view.png" alt="Apple iMac G3 from 2000">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>iMac (Summer 2000)</h2>
+                        <p>This colorful all-in-one desktop continued the iMac line and helped keep Apple’s home computers visually distinctive.</p>
+                        <a class="source" href="https://support.apple.com/en-us/docs/mac/8359">Apple source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2002</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/IMac_G4_sunflower7.png" alt="Apple iMac G4 flat panel">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>iMac Flat Panel</h2>
+                        <p>The lamp-style iMac became one of Apple’s most recognizable designs, with a flat display mounted on an adjustable arm.</p>
+                        <a class="source" href="https://support.apple.com/en-us/docs/mac/111858">Apple source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2008</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Macbook_Air.png" alt="Apple MacBook Air">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>MacBook Air</h2>
+                        <p>The original MacBook Air pushed thin-and-light laptop design forward and became one of Apple’s most influential notebooks.</p>
+                        <a class="source" href="https://support.apple.com/en-us/docs/mac/131826">Apple source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2012</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microsoft_Surface_RT.jpg" alt="Microsoft Surface tablet computer">
+                    <div>
+                        <span class="brand-badge">Microsoft</span>
+                        <h2>Microsoft Surface</h2>
+                        <p>The Surface line marked Microsoft’s move into building its own computers, combining tablet portability with laptop-style productivity.</p>
+                        <a class="source" href="https://news.microsoft.com/2012/06/18/introducing-microsoft-surface/">Microsoft source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2015</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Dell_XPS_13_9343.png" alt="Dell XPS 13 laptop">
+                    <div>
+                        <span class="brand-badge">Dell</span>
+                        <h2>Dell XPS 13</h2>
+                        <p>The XPS 13 became a well-known Windows laptop for its compact body, thin bezels, and premium design.</p>
+                        <a class="source" href="https://www.dell.com/en-us/blog/tag/xps-13/">Dell source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2016</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microsoft_Surface_Studio.png" alt="Microsoft Surface Studio desktop">
+                    <div>
+                        <span class="brand-badge">Microsoft</span>
+                        <h2>Surface Studio</h2>
+                        <p>The Surface Studio brought Microsoft’s Surface design to the desktop with a large display made for drawing and creative work.</p>
+                        <a class="source" href="https://news.microsoft.com/2016/10/26/introducing-surface-studio-and-surface-dial-turn-your-desk-into-a-creative-studio/">Microsoft source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2021</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/M1_iMac_vector.svg" alt="Apple iMac 24-inch M1">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>iMac 24-inch (M1)</h2>
+                        <p>This iMac introduced Apple silicon to the all-in-one Mac line and brought back bright color options in a modern design.</p>
+                        <a class="source" href="https://support.apple.com/en-us/docs/mac/300355">Apple source</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="entry">
+                <div class="year">2025</div>
+                <div class="card">
+                    <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Macbook_Air.png" alt="Apple MacBook Air 13-inch M4">
+                    <div>
+                        <span class="brand-badge">Apple</span>
+                        <h2>MacBook Air 13-inch (M4)</h2>
+                        <p>A recent MacBook Air model showing how Apple’s laptop line has evolved into thin, efficient notebooks powered by Apple silicon.</p>
+                        <a class="source" href="https://support.apple.com/en-us/docs/mac/301086">Apple source</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+    <script>
+        function createFallbackImage(label) {
+            const safeLabel = label.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="480" height="320" viewBox="0 0 480 320">
+                    <rect width="480" height="320" rx="24" fill="#eef4ff"/>
+                    <rect x="100" y="52" width="280" height="170" rx="16" fill="#dbe7ff" stroke="#b7caf3" stroke-width="6"/>
+                    <rect x="140" y="88" width="200" height="98" rx="10" fill="#f8fbff"/>
+                    <rect x="210" y="226" width="60" height="20" rx="8" fill="#b7caf3"/>
+                    <rect x="170" y="246" width="140" height="18" rx="9" fill="#c9d8f7"/>
+                    <text x="240" y="292" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#3259a8">${safeLabel}</text>
+                </svg>
+            `;
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+        }
+
+        document.querySelectorAll(".card img").forEach((image) => {
+            image.addEventListener("error", () => {
+                image.src = createFallbackImage(image.alt);
+                image.classList.add("fallback");
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
