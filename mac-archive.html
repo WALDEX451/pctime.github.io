@@ -7,38 +7,33 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
+            background-color: #f4f4f4;
         }
-        h1 {
-            color: #333;
+        .blueprint {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        #blueprint {
-            max-width: 100%;
+        svg {
+            width: 100%;
             height: auto;
-        }
-        .download {
-            margin-top: 20px;
-            text-align: center;
-        }
-        a {
-            text-decoration: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Macintosh 128K Blueprint</h1>
-    <img id="blueprint" src="mac-128k-blueprint.png" alt="Macintosh 128K Blueprint">
-    <div class="download">
-        <a href="macintosh-blueprint.pdf" download>Download Blueprint (A3 PDF)</a>
+    <div class="blueprint">
+        <h1>Blueprint of the Macintosh 128K</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+            <!-- Example SVG content, replace with actual blueprint SVG -->
+            <rect x="100" y="100" width="800" height="400" fill="lightgrey" stroke="black" stroke-width="5" />
+            <text x="250" y="300" font-family="Arial" font-size="40" fill="black">Macintosh 128K</text>
+        </svg>
+        <p><a href="/path/to/macintosh_128k_manual.pdf" download>Download the Macintosh 128K Manual</a></p>
     </div>
 </body>
 </html>
